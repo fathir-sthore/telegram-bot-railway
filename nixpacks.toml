@@ -1,0 +1,36 @@
+[phases.setup]
+  nixPkgs = [
+    "nodejs-18_x",
+    "python3",
+    "git"
+  ]
+
+[phases.install]
+  cmds = [
+    "npm ci --only=production --omit=dev"
+  ]
+
+[phases.build]
+  cmds = [
+    "echo 'Build completed successfully'"
+  ]
+
+[start]
+  cmd = "node src/bot.js"
+
+[statics]
+  "/public" = "public"
+
+[environments]
+  NODE_ENV = "production"
+  PORT = "3000"
+
+[livenessProbe]
+  httpPath = "/health"
+  initialDelaySeconds = 10
+  periodSeconds = 30
+
+[readinessProbe]
+  httpPath = "/health"
+  initialDelaySeconds = 5
+  periodSeconds = 10

@@ -1,0 +1,45 @@
+[build]
+  builder = "nixpacks"
+  buildCommand = "npm install"
+  nixpacksConfigPath = "./nixpacks.toml"
+
+[deploy]
+  startCommand = "npm start"
+  healthcheckPath = "/health"
+  healthcheckTimeout = 100
+  restartPolicyType = "on_failure"
+  restartPolicyMaxRetries = 10
+
+[variables]
+  NODE_ENV = "production"
+  PORT = "3000"
+
+# Environment variables (akan diisi di dashboard Railway)
+[environments.development.variables]
+  BOT_TOKEN = "8592407821:AAGOB2FmqS8YC1U8JgGXtsNp6eSFqLdz7O0"
+  NODE_ENV = "development"
+
+[environments.production.variables]
+  BOT_TOKEN = ""
+  NODE_ENV = "production"
+
+# Service scaling (gratis tier)
+[service]
+  autoDeploy = true
+  numInstances = 1
+  softConcurrency = 100
+  hardConcurrency = 150
+  cpu = 256
+  memory = 512
+  [service.ports]
+    port = 3000
+    http = true
+
+# Database (Railway PostgreSQL gratis)
+# [plugins.postgresql]
+#   version = "15"
+
+# Cron jobs untuk backup
+[jobs.backup]
+  schedule = "0 */6 * * *"
+  command = "npm run backup"

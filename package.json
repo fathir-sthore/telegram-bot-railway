@@ -1,0 +1,49 @@
+{
+  "name": "telegram-bot-railway",
+  "version": "2.0.0",
+  "description": "Telegram Bot Hosting di Railway.app",
+  "main": "src/bot.js",
+  "scripts": {
+    "start": "node src/bot.js",
+    "dev": "nodemon src/bot.js",
+    "test": "echo \"No tests specified\" && exit 0",
+    "backup": "node scripts/backup.js",
+    "deploy": "railway up",
+    "logs": "railway logs",
+    "status": "railway status"
+  },
+  "keywords": [
+    "telegram-bot",
+    "railway",
+    "broadcast",
+    "nodejs"
+  ],
+  "author": "FATHIR STHORE",
+  "license": "MIT",
+  "dependencies": {
+    "telegraf": "^4.16.3",
+    "express": "^4.21.2",
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3",
+    "axios": "^1.7.9",
+    "winston": "^3.13.0",
+    "compression": "^1.7.4",
+    "helmet": "^7.1.0",
+    "rate-limiter-flexible": "^4.2.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/fathir-sthore/telegram-bot-railway.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fathir-sthore/telegram-bot-railway/issues"
+  },
+  "homepage": "https://github.com/fathir-sthore/telegram-bot-railway#readme"
+}
